@@ -1,0 +1,27 @@
+{
+  "name": "nano-redux",
+  "version": "0.0.1",
+  "description": "An helper for redux",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jsellam/nano-redux.git"
+  },
+  "keywords": [
+    "redux"
+  ],
+  "author": "Jeremie Sellam",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jsellam/nano-redux/issues"
+  },
+  "homepage": "https://github.com/jsellam/nano-redux#readme",
+  "dependencies": {
+    "redux-act": "^1.7.4",
+    "reselect": "^3.0.1",
+    "seamless-immutable": "^7.1.3"
+  }
+}
