@@ -5,7 +5,7 @@ export const reset = (propName,startValue) => (state)=>state.merge({[propName]:s
 //boolean
 export const toggleBoolean = (propName) => (state)=>state.merge({[propName]:!state[propName]})
 export const disableBoolean = (propName) => (state)=>state.merge({[propName]:false})
-export const enableBoolean = (propName) => (state)=>state.merge({[propName]:false})
+export const enableBoolean = (propName) => (state)=>state.merge({[propName]:true})
 
 //numeric
 export const incNumeric = (propName) => (state)=>state.merge({[propName]:state[propName]+1})

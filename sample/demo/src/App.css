@@ -1,0 +1,34 @@
+.home{
+
+
+}
+
+.demo{
+  border:solid 1px #CCCCCC;
+  margin:20px;
+  padding:20px;
+}
+
+.demo h2 {
+  text-transform: uppercase;
+  font-size:16px;
+  font-weight: bold;
+}
+
+.demo .value{
+    font-style: italic;
+}
+
+.demo .button {
+  padding:8px;
+  background-color:#03DAC6;
+  border-radius: 5px;
+  cursor:pointer;
+  display:inline-block;
+  margin:4px;
+  user-select: none;
+}
+
+.demo .button:hover{
+  color:#FFFFFF;
+}
