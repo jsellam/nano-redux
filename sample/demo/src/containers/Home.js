@@ -72,12 +72,6 @@ const mapStateToProps = (state) => ({
     toggleLogged:()=>dispatch(userActions.toggleLogged()),
     setLogged:(value)=>dispatch(userActions.setLogged(value)),
     resetLogged:()=>dispatch(userActions.resetLogged())
-    /*
-    enqueueChapterAssets:(chapterName,assets)=> dispatch(assetLoaderActions.loadGroup(chapterName,assets)),
-    stopMedia:(mediaID)=>dispatch(mediaActions.stopMedia(mediaID)),
-    expandHeader:()=>dispatch(headerPlayerActions.expand()),
-    colapseHeader:()=>dispatch(headerPlayerActions.colapse())
-    */
   })
   
   export default connect(mapStateToProps, mapActions)(Home)
