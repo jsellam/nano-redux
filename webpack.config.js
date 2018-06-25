@@ -10,7 +10,7 @@ module.exports = {
       rules: [{
          test: /\.js$/,
          include: path.resolve(__dirname,'src'),
-         exclude: /(node_modules|build|sample)/,
+         exclude: /(node_modules|dist|sample)/,
          use: {
             loader: 'babel-loader',
          },
