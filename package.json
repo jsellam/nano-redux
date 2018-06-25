@@ -4,7 +4,8 @@
   "description": "An helper for redux",
   "main": "index.js",
   "scripts": {
-    "test": "test"
+    "test": "test",
+    "build": "webpack --mode production"
   },
   "repository": {
     "type": "git",
@@ -19,9 +20,18 @@
     "url": "https://github.com/jsellam/nano-redux/issues"
   },
   "homepage": "https://github.com/jsellam/nano-redux#readme",
-  "dependencies": {
+  "peerDependencies": {
     "redux-act": "^1.7.4",
     "reselect": "^3.0.1",
     "seamless-immutable": "^7.1.3"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-loader": "^7.1.4",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-stage-0": "^6.24.1",
+    "webpack": "^4.12.1",
+    "webpack-cli": "^3.0.8"
   }
 }

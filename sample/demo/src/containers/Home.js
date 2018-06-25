@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import {userSelectors,userActions} from './../redux/UserRedux'
+import {userSelectors,userActions, withUser} from './../redux/UserRedux'
 import {connect} from 'react-redux'
 
 class Home extends Component {
@@ -52,6 +52,8 @@ class Home extends Component {
 }
 
 
+
+
 const mapStateToProps = (state) => ({
     userName:userSelectors.userName(state),
     like:userSelectors.like(state),
@@ -73,5 +75,6 @@ const mapStateToProps = (state) => ({
     setLogged:(value)=>dispatch(userActions.setLogged(value)),
     resetLogged:()=>dispatch(userActions.resetLogged())
   })
+
   
   export default connect(mapStateToProps, mapActions)(Home)

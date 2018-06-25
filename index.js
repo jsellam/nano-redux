@@ -1,2 +1,2 @@
-import NanoRedux from './src/NanoRedux'
+import NanoRedux from './dist/index'
 export default NanoRedux
