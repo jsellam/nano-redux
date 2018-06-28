@@ -121,7 +121,7 @@ myNumericProp = new NumericProp(initialValue=0)
 
 ### BooleanProp 
 ```
-myNumericProp = new BooleanProp(initialValue=false)
+myBooleanProp = new BooleanProp(initialValue=false)
 ```
 
 | Method  | Description  |
