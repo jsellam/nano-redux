@@ -16,4 +16,5 @@ export const addNumeric = (propName) => (state,value)=>state.merge({[propName]:s
 
 export const addArray = (propName) => (state,value)=>state.updateIn([propName], arr => arr.concat([value]));
 export const removeArrayAt = (propName) => (state,index)=> state.updateIn([propName], arr =>arr.slice(0, index).concat(arr.slice(index+1)));
-//export const removeArrayAt = (propName) => (state,index)=>  state.setIn(propName,state[propName].slice(0, index).concat(state[propName].slice(index+1)));
+export const removeArrayFirst = (propName) =>(state) => state.updateIn([propName],arr=>arr.slice(1))
+export const removeArrayLast = (propName) =>(state) => state.updateIn([propName],arr=>arr.slice(0,arr.length-1))

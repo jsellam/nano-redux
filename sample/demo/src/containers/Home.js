@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import {userSelectors,userActions, withUser} from './../redux/UserRedux'
+import userRedux from './../redux/UserRedux'
 import {connect} from 'react-redux'
 
 class Home extends Component {
@@ -31,6 +31,7 @@ class Home extends Component {
                     <span className="button" onClick={()=>this.props.incLike()}>incLike()</span>
                     <span className="button" onClick={()=>this.props.descLike()}>descLike()</span>
                     <span className="button" onClick={()=>this.props.setLike(20)}>setLike(20)</span>
+                    <span className="button" onClick={()=>this.props.doubleLike()}>doubleLike()</span>
                     <span className="button" onClick={()=>this.props.resetLike()}>resetLike()</span>
                 </div>
             </div> 
@@ -50,9 +51,12 @@ class Home extends Component {
             <div className="demo">
                 <h2>Array value</h2>
                 <span className="value">{this.props.friends.join(',')}</span>
+                <div className="value">last = {this.props.lastFriend}</div>
                 <div className="actions">
                     <span className="button" onClick={()=>this.props.addToFriends("Friend"+Math.floor(Math.random()*100))}>addFriends(name)</span>
-                    <span className="button" onClick={()=>this.props.removeToFriendsAt(1)}>removeFriendsAt(1)</span>
+                    <span className="button" onClick={()=>this.props.removeToFriendsAt(3)}>removeFriendsAt(3)</span>
+                    <span className="button" onClick={()=>this.props.removeFirstFriend()}>removeFirstFriend()</span>
+                    <span className="button" onClick={()=>this.props.removeLastFriend()}>removeLastFriend()</span>
                 </div>
             </div>    
             
@@ -66,30 +70,35 @@ class Home extends Component {
 
 
 const mapStateToProps = (state) => ({
-    userName:userSelectors.userName(state),
-    like:userSelectors.like(state),
-    logged:userSelectors.logged(state),
-    friends:userSelectors.friends(state)
+    userName:userRedux.userName.getValue(state),
+    like:userRedux.like.getValue(state),
+    logged:userRedux.logged.getValue(state),
+    friends:userRedux.friends.getValue(state),
+    lastFriend:userRedux.lastFriend(state)
   })
   
   const mapActions = (dispatch) => ({
    
-    setUserName:(userName)=> dispatch(userActions.setUserName(userName)),
-    resetUserName:()=>dispatch(userActions.resetUserName()),
+    setUserName:(userName)=> dispatch(userRedux.userName.setValue(userName)),
+    resetUserName:()=>dispatch(userRedux.userName.reset()),
 
-    incLike:()=>dispatch(userActions.incLike()),
-    descLike:()=>dispatch(userActions.descLike()),
-    setLike:(value)=>dispatch(userActions.setLike(value)),
-    resetLike:()=>dispatch(userActions.resetLike()),
+    incLike:()=>dispatch(userRedux.like.inc()),
+    descLike:()=>dispatch(userRedux.like.desc()),
+    setLike:(value)=>dispatch(userRedux.like.setValue(value)),
+    resetLike:()=>dispatch(userRedux.like.reset()),
+    doubleLike:()=>dispatch(userRedux.doubleLike()),
 
-    enableLogged:()=>dispatch(userActions.enableLogged()),
-    disableLogged:()=>dispatch(userActions.disableLogged()),
-    toggleLogged:()=>dispatch(userActions.toggleLogged()),
-    setLogged:(value)=>dispatch(userActions.setLogged(value)),
-    resetLogged:()=>dispatch(userActions.resetLogged()),
+    enableLogged:()=>dispatch(userRedux.logged.enable()),
+    disableLogged:()=>dispatch(userRedux.logged.disable()),
+    toggleLogged:()=>dispatch(userRedux.logged.toggle()),
+    setLogged:(value)=>dispatch(userRedux.logged.setValue(value)),
+    resetLogged:()=>dispatch(userRedux.logged.reset()),
 
-    addToFriends:(name)=>dispatch(userActions.addToFriends(name)),
-    removeToFriendsAt:(index)=>dispatch(userActions.removeToFriendsAt(index))
+    addToFriends:(name)=>dispatch(userRedux.friends.push(name)),
+    removeToFriendsAt:(index)=>dispatch(userRedux.friends.removeAt(index)),
+    removeFirstFriend:()=>dispatch(userRedux.friends.removeFirst()),
+    removeLastFriend:()=>dispatch(userRedux.friends.removeLast()),
+    
   })
 
   

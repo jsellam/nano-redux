@@ -8,14 +8,14 @@ export default class BasicProp extends AbstractProp{
     _createReducers(propName)
     {
         this.setValue = createAction(prefix('set',propName))
-        this.resetValue = createAction(prefix('reset',propName))
+        this.reset = createAction(prefix('reset',propName))
 
         return {
             [this.setValue]:reducers.basicMerge(propName),
-            [this.resetValue]:reducers.reset(propName,this.initialValue)
+            [this.reset]:reducers.reset(propName,this.initialValue)
         }
     }
 
     setValue(value){}
-    resetValue(){}
+    reset(){}
 }

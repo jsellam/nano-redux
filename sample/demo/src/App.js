@@ -5,7 +5,7 @@ import {Provider} from 'react-redux'
 import { createStore } from 'redux'
 
 import userRedux from './redux/UserRedux'
-import Home2 from './containers/Home2'
+import Home from './containers/Home'
 
 
 const store = createStore(userRedux.getReducers(), window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
@@ -26,7 +26,7 @@ class App extends Component {
       <Provider store={store}>
       <div className="App">
        <div>
-        <Home2 />
+        <Home />
        </div>
       
       </div>

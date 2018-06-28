@@ -8,12 +8,13 @@ export default class NumericProp extends AbstractProp{
     _createReducers(propName)
     {
         this.setValue = createAction(prefix('set',propName))
-        this.resetValue = createAction(prefix('reset',propName))
+        this.reset = createAction(prefix('reset',propName))
         this.inc = createAction(prefix('inc',propName))
+        this.desc = createAction(prefix('desc',propName))
 
         return {
             [this.setValue]:reducers.basicMerge(propName),
-            [this.resetValue]:reducers.reset(propName,this.initialValue),
+            [this.reset]:reducers.reset(propName,this.initialValue),
             [this.inc]:reducers.incNumeric(propName),
             [this.desc]:reducers.descNumeric(propName),
             [this.add]:reducers.addNumeric(propName)
@@ -21,7 +22,7 @@ export default class NumericProp extends AbstractProp{
     }
 
     setValue(value){}
-    resetValue(){}
+    reset(){}
     inc(){}
     desc(){}
 }
