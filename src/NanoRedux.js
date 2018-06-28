@@ -2,116 +2,61 @@ import { createAction, createReducer } from 'redux-act'
 import { createSelector } from 'reselect';
 import Immutable from 'seamless-immutable'
 
-import prefix from './lib/prefix'
-import * as reducers from './lib/reducers'
-
-export default class NanoRedux {
-
+import BasicProp from './props/BasicProp'
+import NumericProp from './props/NumericProp'
+import BooleanProp from './props/BooleanProp'
+import ArrayProp from './props/ArrayProp'
+class NanoRedux {
 
     constructor(storeName=null)
     {
         this.storeName = storeName
         this._state = {}
-        this._actions = {}
         this._reducers = {}
-        this._selectors = {}
-    }
 
+        this.init()
+        for(let propName in this)
+        {
+            var prop = this[propName]
+            if(prop && prop.__isProp){
+                //add to state
+                this._state[propName] = prop.initialValue
 
-    addBoolean(propName,startValue=false)
-    {
-        this.addState(propName,startValue)
-        this.addAction(prefix('set',propName),reducers.basicMerge(propName))
-        this.addAction(prefix('reset',propName),reducers.reset(propName,startValue))
-        this.addAction(prefix('toggle',propName),reducers.toggleBoolean(propName))
-        this.addAction(prefix('disable',propName),reducers.disableBoolean(propName))
-        this.addAction(prefix('enable',propName),reducers.enableBoolean(propName))
-        return this
-    }
+                //add reducers
+                let reducers = prop._createReducers(propName)
+                for(let actionName in reducers){
+                    let action = [actionName]
+                    this._reducers[action] = reducers[actionName]
+                }
 
-    add(propName,startValue=null){
-        this.addState(propName,startValue)
-        this.addAction(prefix('set',propName),reducers.basicMerge(propName))
-        this.addAction(prefix('reset',propName),reducers.reset(propName,startValue))
-        return this
-    }
+                prop._createSelector(this.storeName,propName)
+            }
+        }
 
-    addNumeric(propName,startValue=0){
-        this.addState(propName,startValue)
-        this.addAction(prefix('set',propName),reducers.basicMerge(propName))
-        this.addAction(prefix('reset',propName),reducers.reset(propName,startValue))
-        this.addAction(prefix('inc',propName),reducers.incNumeric(propName))
-        this.addAction(prefix('desc',propName),reducers.descNumeric(propName))
-        this.addAction(prefix('add',propName),reducers.addNumeric(propName))
-        return this
-    }
-
-
-    addArray(propName,startValue=[]){
-        this.addState(propName,startValue)
-        this.addAction(prefix('addTo',propName),reducers.addArray(propName))
-        this.addAction(prefix('removeTo',propName+'At'),reducers.removeArrayAt(propName))
-        return this
-    }
-
-    addState(propName,startValue)
-    {
-        this._state[propName] = startValue
-        if(this.storeName) this._selectors[propName] = createSelector(state => state[this.storeName][propName],(_)=>_)
-        else this._selectors[propName] = createSelector(state => state[propName],(_)=>_)
-        return this
-    }
-
-    addAction(actionName,reducer){
-        this._actions[actionName] = createAction(actionName)
-        this._reducers[this._actions[actionName]] = reducer
-        return this
-    }
-
-    
-
-    
-    finalize(){
         this.initialState = Immutable(this._state)
-        this.reducers = createReducer(this._reducers,this.initialState)      
+        this.reducers = createReducer(this._reducers,this.initialState)  
     }
 
 
-    getInitialState()
+    createCustomAction(actionName,reducer)
     {
-        return this.initialState
+        let action = createAction(actionName)
+        this._reducers[action] = reducer
+        return action
     }
 
-    getActions()
+    createCustomSelector(func)
     {
-        return this._actions
+        return createSelector(func,(_)=>_)
     }
+
+
 
     getReducers()
     {
         return this.reducers
     }
-
-    getSelectors()
-    {
-        return this._selectors
-    }
-
-/*
-    getAllMappedActions()
-    {
-        return function(dispatch)
-        {
-            let mapped = {}
-            for(let actionName in this._actions)
-            {
-                let action = this._actions[actionName]
-                mapped[action] = (...params)=>dispatch(action.apply(null,params))
-            }
-            return mapped
-        }
-    }*/
-
-
-
 }
+
+export {NanoRedux as default}
+export {BasicProp,NumericProp,BooleanProp,ArrayProp}

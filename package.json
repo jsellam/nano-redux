@@ -2,7 +2,7 @@
   "name": "nano-redux",
   "version": "0.0.4",
   "description": "An helper for redux",
-  "main": "index.js",
+  "main": "dist/index.js",
   "scripts": {
     "test": "test",
     "build": "webpack --mode production"
