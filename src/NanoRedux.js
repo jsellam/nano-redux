@@ -46,6 +46,14 @@ export default class NanoRedux {
         return this
     }
 
+
+    addArray(propName,startValue=[]){
+        this.addState(propName,startValue)
+        this.addAction(prefix('addTo',propName),reducers.addArray(propName))
+        this.addAction(prefix('removeTo',propName+'At'),reducers.removeArrayAt(propName))
+        return this
+    }
+
     addState(propName,startValue)
     {
         this._state[propName] = startValue
@@ -60,6 +68,7 @@ export default class NanoRedux {
         return this
     }
 
+    
 
     
     finalize(){
@@ -87,6 +96,21 @@ export default class NanoRedux {
     {
         return this._selectors
     }
+
+/*
+    getAllMappedActions()
+    {
+        return function(dispatch)
+        {
+            let mapped = {}
+            for(let actionName in this._actions)
+            {
+                let action = this._actions[actionName]
+                mapped[action] = (...params)=>dispatch(action.apply(null,params))
+            }
+            return mapped
+        }
+    }*/
 
 
 

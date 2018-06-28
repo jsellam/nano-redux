@@ -5,6 +5,7 @@ nanoRedux
     .add('userName','default name')
     .addNumeric('like',10)
     .addBoolean('logged',false)
+    .addArray('friends',['friend1','friend2','friend3'])
     .finalize()
 
 

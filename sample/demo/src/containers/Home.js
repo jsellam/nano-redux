@@ -24,28 +24,39 @@ class Home extends Component {
                     <span className="button" onClick={()=>this.props.resetUserName()}>resetUserName()</span>
                </div>
             </div> 
+            <div className="demo">
+                <h2>Numeric value</h2>
+                <span className="value">{this.props.like}</span>
+                <div className="actions">
+                    <span className="button" onClick={()=>this.props.incLike()}>incLike()</span>
+                    <span className="button" onClick={()=>this.props.descLike()}>descLike()</span>
+                    <span className="button" onClick={()=>this.props.setLike(20)}>setLike(20)</span>
+                    <span className="button" onClick={()=>this.props.resetLike()}>resetLike()</span>
+                </div>
+            </div> 
+            <div className="demo">
+                <h2>Boolean value</h2>
+                <span className="value">{this.props.logged.toString()}</span>
+                <div className="actions">
+                    <span className="button" onClick={()=>this.props.enableLogged()}>enableLogged()</span>
+                    <span className="button" onClick={()=>this.props.disableLogged()}>disableLogged()</span>
+                    <span className="button" onClick={()=>this.props.toggleLogged()}>toggleLoged()</span>
+                    <span className="button" onClick={()=>this.props.setLogged(true)}>setLogged(true)</span>
+                    <span className="button" onClick={()=>this.props.resetLogged()}>resetLogged()</span>
+                </div>
+            </div>    
 
-        <div className="demo">
-            <h2>Numeric value</h2>
-            <span className="value">{this.props.like}</span>
-            <div className="actions">
-                <span className="button" onClick={()=>this.props.incLike()}>incLike()</span>
-                <span className="button" onClick={()=>this.props.descLike()}>descLike()</span>
-                <span className="button" onClick={()=>this.props.setLike(20)}>setLike(20)</span>
-                <span className="button" onClick={()=>this.props.resetLike()}>resetLike()</span>
-            </div>
-         </div> 
-         <div className="demo">
-            <h2>Boolean value</h2>
-            <span className="value">{this.props.logged.toString()}</span>
-            <div className="actions">
-                <span className="button" onClick={()=>this.props.enableLogged()}>enableLogged()</span>
-                <span className="button" onClick={()=>this.props.disableLogged()}>disableLogged()</span>
-                <span className="button" onClick={()=>this.props.toggleLogged()}>toggleLoged()</span>
-                <span className="button" onClick={()=>this.props.setLogged(true)}>setLogged(true)</span>
-                <span className="button" onClick={()=>this.props.resetLogged()}>resetLogged()</span>
-            </div>
-            </div>           
+
+            <div className="demo">
+                <h2>Array value</h2>
+                <span className="value">{this.props.friends.join(',')}</span>
+                <div className="actions">
+                    <span className="button" onClick={()=>this.props.addToFriends("Friend"+Math.floor(Math.random()*100))}>addFriends(name)</span>
+                    <span className="button" onClick={()=>this.props.removeToFriendsAt(1)}>removeFriendsAt(1)</span>
+                </div>
+            </div>    
+            
+            
         </div>
         )
     }
@@ -57,10 +68,12 @@ class Home extends Component {
 const mapStateToProps = (state) => ({
     userName:userSelectors.userName(state),
     like:userSelectors.like(state),
-    logged:userSelectors.logged(state)
+    logged:userSelectors.logged(state),
+    friends:userSelectors.friends(state)
   })
   
   const mapActions = (dispatch) => ({
+   
     setUserName:(userName)=> dispatch(userActions.setUserName(userName)),
     resetUserName:()=>dispatch(userActions.resetUserName()),
 
@@ -73,7 +86,10 @@ const mapStateToProps = (state) => ({
     disableLogged:()=>dispatch(userActions.disableLogged()),
     toggleLogged:()=>dispatch(userActions.toggleLogged()),
     setLogged:(value)=>dispatch(userActions.setLogged(value)),
-    resetLogged:()=>dispatch(userActions.resetLogged())
+    resetLogged:()=>dispatch(userActions.resetLogged()),
+
+    addToFriends:(name)=>dispatch(userActions.addToFriends(name)),
+    removeToFriendsAt:(index)=>dispatch(userActions.removeToFriendsAt(index))
   })
 
   
