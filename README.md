@@ -1,5 +1,7 @@
 # nano-redux
-A lightweight helper for redux
+NanoRedux is a lightweight helper for Redux. It can be used for small stores with simple interractions. You have just to create a class extending NanoRedux and initialize your props in the init method. Each prop initialized is a value in the state. You have many types of props : BasicProp, NumericProp, BooleanProp, ArrayProp. This types provide a set of actions/reducers for each props.
+
+NanoRedux is not for deep and complex state manipulation. The best way is to separate your stores in different files and combine them with [combineReducers](https://redux.js.org/api-reference/combinereducers). With this method you can mix NanoRedux with classic stores
 ## How to install
 With npm
 
@@ -33,7 +35,7 @@ class UserRedux extends NanoRedux {
 export default new UserRedux()
 ```
 
-If you are using combineReducers, you can name your NanoRedux in the constructor
+If you are using [combineReducers](https://redux.js.org/api-reference/combinereducers), you can name your NanoRedux in the constructor
 ```
 export default new UserRedux('user')
 ```
