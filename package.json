@@ -1,6 +1,6 @@
 {
   "name": "nano-redux",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "An helper for redux",
   "main": "dist/index.js",
   "scripts": {
