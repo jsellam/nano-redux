@@ -11,8 +11,8 @@ class NanoRedux {
     constructor(storeName=null)
     {
         this.storeName = storeName
-        this._state = {}
         this._reducers = {}
+        this._state = {}
 
         this.init()
         for(let propName in this)
