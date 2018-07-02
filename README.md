@@ -35,10 +35,21 @@ class UserRedux extends NanoRedux {
 export default new UserRedux()
 ```
 
-If you are using [combineReducers](https://redux.js.org/api-reference/combinereducers), you can name your NanoRedux in the constructor
+If you are using [combineReducers](https://redux.js.org/api-reference/combinereducers), you need to name your NanoRedux in the constructor
 ```
 export default new UserRedux('user')
 ```
+```
+ let reducer = combineReducers({
+        user: userRedux.getReducers(),
+        app:appreducers
+ })
+
+```
+
+
+
+
 Add your store to the provider
 ```
 import React, { Component } from 'react';
@@ -101,10 +112,13 @@ export default connect(mapStateToProps, mapActions)(Home)
 myBasicProp = new BasicProp(initialValue=null)
 ```
 
-| Method  | Description  |
+| Action  | Description  |
 |---|---|
 | setValue(newValue)  | replace the state value |
 | reset()  | set initial value as new value |
+
+| Selector  | Description  |
+|---|---|
 | getValue(state)  | return the current value |
 
 ### NumericProp 
@@ -112,13 +126,16 @@ myBasicProp = new BasicProp(initialValue=null)
 myNumericProp = new NumericProp(initialValue=0)
 ```
 
-| Method  | Description  |
+| Action  | Description  |
 |---|---|
 | setValue(newValue)  | replace the state value |
 | reset()  | set initial value as new value |
 | inc()  | add 1 to the current value |
 | desc()  | remove 1 to the current value |
 | add(value)  | add value to the current value |
+
+| Selector  | Description  |
+|---|---|
 | getValue(state)  | return the current value |
 
 ### BooleanProp 
@@ -126,13 +143,16 @@ myNumericProp = new NumericProp(initialValue=0)
 myBooleanProp = new BooleanProp(initialValue=false)
 ```
 
-| Method  | Description  |
+| Action  | Description  |
 |---|---|
 | setValue(newValue)  | replace the state value |
 | reset()  | set initial value as new value |
 | enable()  | set the value to true |
 | disable()  | set the value to false |
 | toggle()  | toggle true/false the current value |
+
+| Selector  | Description  |
+|---|---|
 | getValue(state)  | return the current value |
 
 ### ArrayProp 
@@ -140,7 +160,7 @@ myBooleanProp = new BooleanProp(initialValue=false)
 myArrayProp = new ArrayProp(initialValue=[])
 ```
 
-| Method  | Description  |
+| Action  | Description  |
 |---|---|
 | setValue(newValue)  | replace the state value |
 | reset()  | set initial value as new value |
@@ -148,4 +168,7 @@ myArrayProp = new ArrayProp(initialValue=[])
 | removeAt(index)  | remove value at index |
 | removeFirst()  | remove the first value |
 | removeLast()  | remove the last value |
+
+| Selector  | Description  |
+|---|---|
 | getValue(state)  | return the current value |

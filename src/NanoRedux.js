@@ -38,10 +38,10 @@ class NanoRedux {
     }
 
 
-    createCustomAction(actionName,reducer)
+    createCustomAction(actionName,reducer=null)
     {
         let action = createAction(actionName)
-        this._reducers[action] = reducer
+        if(reducer) this._reducers[action] = reducer
         return action
     }
 
