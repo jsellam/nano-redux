@@ -19,7 +19,7 @@
   "bugs": {
     "url": "https://github.com/jsellam/nano-redux/issues"
   },
-  "homepage": "https://github.com/jsellam/nano-redux#readme",
+  "homepage": "https://github.com/jsellam/nano-redux/blob/master/README.md",
   "peerDependencies": {
     "redux-act": "^1.7.4",
     "reselect": "^3.0.1",
